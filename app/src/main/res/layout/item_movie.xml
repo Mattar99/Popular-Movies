@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    android:id="@+id/movie_item_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_margin="@dimen/item_spacing_full"
+    app:cardBackgroundColor="#fff"
+    >
+
+   <android.support.constraint.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:elevation="4dp">
+
+       <ImageView
+           android:id="@+id/Movie_Poster"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_margin="@dimen/item_spacing_half"
+           android:layout_marginBottom="8dp"
+           android:scaleType="centerCrop"
+           android:src="@color/cardview_light_background"
+           app:layout_constraintBottom_toTopOf="@+id/Title"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_weight="1" />
+
+       <TextView
+           android:id="@+id/overview"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="8dp"
+           android:layout_marginStart="8dp"
+           android:textSize="@dimen/text_size_medium"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           android:ellipsize="end"
+           android:maxEms="10"
+           android:singleLine="true"
+           android:text="asdasdadasdasdasdasdasdasdadasdasdasdasd"
+           />
+
+       <TextView
+           android:id="@+id/Title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="8dp"
+           android:layout_marginStart="8dp"
+           android:textSize="@dimen/text_size_large"
+           app:layout_constraintBottom_toTopOf="@+id/overview"
+           app:layout_constraintStart_toStartOf="parent"
+           />
+
+   </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
