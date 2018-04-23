@@ -11,17 +11,27 @@
     <dimen name="text_size_xxlarge">24sp</dimen>
     <dimen name="text_size_diff_large_small">6sp</dimen>
 
-    <!-- Common -->
-    <dimen name="item_spacing_half">2dp</dimen>
-    <dimen name="item_spacing_full">4dp</dimen>
-    <dimen name="element_spacing_normal">8dp</dimen>
-    <dimen name="content_padding_normal">16dp</dimen>
-    <dimen name="card_corner_radius">2dp</dimen>
-    <dimen name="item_load_more_size">48dp</dimen>
-    <dimen name="flexible_space_image_height">300dp</dimen>
-    <item name="match_parent" type="dimen">-1</item>
-    <item name="wrap_content" type="dimen">-2</item>
 
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="item_offset">10dp</dimen>
+
+    <dimen name="detail_backdrop_height">250dp</dimen>
+    <dimen name="backdrop_title">30dp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_album_radius">0dp</dimen>
+
+    <dimen name="album_cover_height">342dp</dimen>
+    <dimen name="album_cover_width">228dp</dimen>
+
+    <dimen name="album_title_padding">7dp</dimen>
+
+    <dimen name="songs_count_padding_bottom">5dp</dimen>
 
 
 </resources>

@@ -23,7 +23,7 @@ public class NetworkUtils {
     public static final String API_KEY        = "8aba2d4512c203a0c97453ceeca503c1";
 
     // Image Base Url
-    public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w185/";
+    public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w342/";
 
     //QueryParameters
     public  static final String SORT_BY_PARAM = "sort_by";
