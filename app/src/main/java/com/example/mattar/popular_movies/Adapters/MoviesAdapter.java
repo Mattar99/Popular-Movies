@@ -61,11 +61,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
 
 
-        //Picasso.get().load(NetworkUtils.BASE_IMAGE_URL+movie.getPosterPath()).into(holder.movie_poster);
-        String url = NetworkUtils.BASE_IMAGE_URL+movie.getPosterPath();
-        final ImageView imageView = holder.movie_poster;
-        final CardView cardView = holder.item_container;
-        LoadImage_Color(url,imageView,cardView);
+        Picasso.get().load(NetworkUtils.BASE_IMAGE_URL+movie.getPosterPath()).into(holder.movie_poster);
+        //String url = NetworkUtils.BASE_IMAGE_URL+movie.getPosterPath();
+        //ImageView imageView = holder.movie_poster;
+        //CardView cardView = holder.item_container;
+        //LoadImage_Color(url,imageView,cardView);
 
         holder.movie_title.setText(movie.getOriginalTitle());
         holder.movie_overview.setText(movie.getOverview());
@@ -103,6 +103,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+
+    // working properly for the first page then it start to confuse
     public void LoadImage_Color(String url, final ImageView imageView, final CardView cardView) {
 
         Picasso.get().load(url)
