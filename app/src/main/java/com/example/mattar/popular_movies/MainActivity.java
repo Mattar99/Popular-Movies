@@ -1,5 +1,6 @@
 package com.example.mattar.popular_movies;
 
+import android.content.Context;
 import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 mainResponse = response.body();
                 Movies = mainResponse.getResults();
 
-                moviesAdapter = new MoviesAdapter(Movies);
+                moviesAdapter = new MoviesAdapter(Movies,MainActivity.this);
                 recyclerView.setAdapter(moviesAdapter);
             }
 

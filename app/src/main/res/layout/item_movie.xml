@@ -33,7 +33,8 @@
         android:paddingRight="@dimen/album_title_padding"
         android:paddingTop="@dimen/album_title_padding"
         android:textColor="@color/album_title"
-        android:textSize="@dimen/text_size_large" />
+        android:textSize="@dimen/text_size_large"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/movie_overview"
