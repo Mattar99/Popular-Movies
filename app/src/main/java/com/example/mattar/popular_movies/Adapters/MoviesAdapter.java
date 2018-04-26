@@ -21,6 +21,7 @@ import com.example.mattar.popular_movies.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -104,7 +105,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     }
 
 
-    // working properly for the first page then it start to confuse
+    // working properly for the first page then it start to confuse images with each other / colors starts to flicker
     public void LoadImage_Color(String url, final ImageView imageView, final CardView cardView) {
 
         Picasso.get().load(url)
@@ -141,4 +142,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
                 });
     }
 
+
+    public ArrayList<MoviesResponse> getmMovies() {
+        return new ArrayList<>(mMovies);
+    }
 }

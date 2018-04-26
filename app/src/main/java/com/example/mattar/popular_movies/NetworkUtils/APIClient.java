@@ -1,7 +1,9 @@
 package com.example.mattar.popular_movies.NetworkUtils;
 
 import com.example.mattar.popular_movies.Model.MainResponse;
+import com.example.mattar.popular_movies.Model.MoviesResponse;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -36,6 +38,8 @@ public class APIClient  {
     public static API_interface getApiInterface(){
         return getAPIClient().create(API_interface.class);
     }
+
+
 
 
     public interface API_interface {
