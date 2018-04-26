@@ -128,6 +128,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    public void setmMovies(ArrayList<MoviesResponse> list){
+        this.mMovies=list;
+    }
+
 
     // working properly for the first page then it start to confuse images with each other / colors starts to flicker
     public void LoadImage_Color(String url, final ImageView imageView, final CardView cardView) {

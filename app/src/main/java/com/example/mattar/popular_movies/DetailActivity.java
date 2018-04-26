@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -59,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
         Picasso.get().load(NetworkUtils.BASE_COVER_URL+movie.getBackdropPath()).into(movie_cover);
-
+        Log.i("url",NetworkUtils.BASE_COVER_URL+movie.getBackdropPath());
         ratingBar.setRating((float) (movie.getVoteAverage())/2);
 
         release_date_content.setText(movie.getReleaseDate());

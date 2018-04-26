@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private MoviesAdapter moviesAdapter;
     private List<MoviesResponse> Movies ;
     private MainResponse mainResponse;
-
+    private EndlessRecyclerViewScrollListener endlessRecyclerViewScrollListener;
 
 
     private Parcelable mListState ;
@@ -71,6 +74,18 @@ public class MainActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+        endlessRecyclerViewScrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
+                page = page_number;
+                queries.put(NetworkUtils.PAGE_PARAM,String.valueOf(page));
+                progressBar.setVisibility(View.VISIBLE);
+                loadMovies(queries);
+            }
+        };
+
+
         if(savedInstanceState==null) {
             progressBar.setVisibility(View.VISIBLE);
 
@@ -80,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
             loadMovies(queries);
         }else{
             page_number = savedInstanceState.getInt(PAGE_KEY);
-            Log.i("Pagenumber",page_number+"");
             mListState = savedInstanceState.getParcelable(LIST_STATE_KEY);
             Movies = savedInstanceState.getParcelableArrayList(ADAPTER_STATE_KEY);
             moviesAdapter = new MoviesAdapter(Movies, MainActivity.this);
@@ -100,18 +114,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        recyclerView.addOnScrollListener(endlessRecyclerViewScrollListener);
 
-        recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(gridLayoutManager) {
 
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                page = page_number;
-                queries.put(NetworkUtils.PAGE_PARAM,String.valueOf(page));
-                progressBar.setVisibility(View.VISIBLE);
-                loadMovies(queries);
-
-            }
-        });
 
     }
 
@@ -161,6 +166,40 @@ public class MainActivity extends AppCompatActivity {
         state.putParcelableArrayList(ADAPTER_STATE_KEY,moviesAdapter.getmMovies());
         state.putInt(PAGE_KEY,page_number);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.highestRated:
+                    Reset(NetworkUtils.sort_order.VOTE.toString());
+                return true;
+            case R.id.mostPopular:
+                Reset(NetworkUtils.sort_order.POPULARITY.toString());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public void Reset(String query){
+        Movies = new ArrayList<>();
+        moviesAdapter.setmMovies(new ArrayList<MoviesResponse>(Movies));
+        page_number=1;
+        queries.put(NetworkUtils.SORT_BY_PARAM,query);
+        queries.put(NetworkUtils.PAGE_PARAM,String.valueOf(page_number));
+        loadMovies(queries);
+        endlessRecyclerViewScrollListener.resetState();
     }
 
 
