@@ -1,5 +1,6 @@
 package com.example.mattar.popular_movies;
 
+import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 
@@ -89,10 +90,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(moviesAdapter);
 
 
+        moviesAdapter.setOnItemClickListener(new MoviesAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("Movie", moviesAdapter.getmMovies().get(position));
+
+                startActivity(intent);
+            }
+        });
 
 
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(gridLayoutManager) {
-            
+
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 page = page_number;
@@ -152,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         state.putInt(PAGE_KEY,page_number);
 
     }
-
 
 
 

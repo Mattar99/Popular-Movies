@@ -24,7 +24,7 @@ public class NetworkUtils {
 
     // Image Base Url
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w342/";
-
+    public static final String BASE_COVER_URL = "http://image.tmdb.org/t/p/w500/";
     //QueryParameters
     public  static final String SORT_BY_PARAM = "sort_by";
     public  static final String API_KEY_PARAM = "api_key";

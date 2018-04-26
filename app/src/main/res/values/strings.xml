@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Popular-Movies</string>
+
+
+    <string name="order_name_hint">Please enter your name</string>
+    <string name="order_details_hint">Please enter your order</string>
+
 </resources>
