@@ -53,13 +53,16 @@ public class MainActivity extends AppCompatActivity {
     private String LIST_STATE_KEY = "LIST_STATE_KEY";
     private String ADAPTER_STATE_KEY = "ADAPTER_STATE_KEY";
     private String PAGE_KEY = "PAGE_KEY";
+    private String SORT_ORDER_STATE = "SORT_ORDER_STATE";
 
 
 
     private APIClient.API_interface apiInterface;
 
+    //
     private int page_number=1;
-    private final Map<String,String> queries = NetworkUtils.buildQueries(NetworkUtils.sort_order.POPULARITY.toString(),page_number);
+    private final Map<String,String> queries = NetworkUtils.buildQueries(page_number);
+    private String sort_order ="popular";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             Movies = savedInstanceState.getParcelableArrayList(ADAPTER_STATE_KEY);
             moviesAdapter = new MoviesAdapter(Movies, MainActivity.this);
             gridLayoutManager.onRestoreInstanceState(mListState);
+            sort_order = savedInstanceState.getString(SORT_ORDER_STATE);
         }
 
         recyclerView.setAdapter(moviesAdapter);
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadMovies(Map<String,String> map){
 
-        Call<MainResponse> call = APIClient.getApiInterface().getMovies(map);
+        Call<MainResponse> call = APIClient.getApiInterface().getMovies(sort_order,map);
 
         call.enqueue(new Callback<MainResponse>() {
             @Override
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         state.putParcelable(LIST_STATE_KEY, mListState);
         state.putParcelableArrayList(ADAPTER_STATE_KEY,moviesAdapter.getmMovies());
         state.putInt(PAGE_KEY,page_number);
+        state.putString(SORT_ORDER_STATE,sort_order);
 
     }
 
@@ -192,11 +197,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void Reset(String query){
+    public void Reset(String path){
         Movies = new ArrayList<>();
         moviesAdapter.setmMovies(new ArrayList<MoviesResponse>(Movies));
         page_number=1;
-        queries.put(NetworkUtils.SORT_BY_PARAM,query);
+        sort_order = path;
         queries.put(NetworkUtils.PAGE_PARAM,String.valueOf(page_number));
         loadMovies(queries);
         endlessRecyclerViewScrollListener.resetState();

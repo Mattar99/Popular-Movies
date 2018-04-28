@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 /**
@@ -44,8 +45,8 @@ public class APIClient  {
 
     public interface API_interface {
 
-        @GET("discover/movie")
-        Call<MainResponse> getMovies(@QueryMap Map<String, String> Queries);
+        @GET("movie/{sort}")
+        Call<MainResponse> getMovies(@Path("sort")String sort ,@QueryMap Map<String, String> Queries);
 
     }
 

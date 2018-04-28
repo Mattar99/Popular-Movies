@@ -2,6 +2,7 @@ package com.example.mattar.popular_movies.NetworkUtils;
 
 import android.net.Uri;
 
+import com.example.mattar.popular_movies.BuildConfig;
 import com.example.mattar.popular_movies.Model.MainResponse;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class NetworkUtils {
 
 
     //Movies Query Values
-    public static final String API_KEY        = "8aba2d4512c203a0c97453ceeca503c1";
+    public static final String API_KEY        = BuildConfig.API_KEY;
 
     // Image Base Url
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w342/";
@@ -32,8 +33,8 @@ public class NetworkUtils {
 
     //QueryValues
     public enum sort_order {
-        POPULARITY("popularity.desc"),
-        VOTE("vote_average.desc");
+        POPULARITY("popular"),
+        VOTE("top_rated");
 
         private String sort_order;
 
@@ -49,11 +50,11 @@ public class NetworkUtils {
 
 
 
-    public static Map<String,String> buildQueries (String sort_order, int page){
+    public static Map<String,String> buildQueries (int page){
 
         Map<String,String> map = new HashMap<>();
 
-        map.put(SORT_BY_PARAM,sort_order);
+        //map.put(SORT_BY_PARAM,sort_order);
         map.put(PAGE_PARAM,String.valueOf(page));
         map.put(API_KEY_PARAM,API_KEY);
 
